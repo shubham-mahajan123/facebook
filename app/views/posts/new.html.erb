@@ -1,0 +1,13 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-6">
+    <div class="border rounded p-4 shadow">
+      <%= form_with model: @post, html: { class: 'needs-validation', novalidate: true } do |form| %>
+        <div class="mb-3">
+          <%= form.label :post_Title, class: 'form-label' %>
+          <%= form.text_field :postname, class: 'form-control' %>
+        </div>
+        <%= form.submit 'Submit', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

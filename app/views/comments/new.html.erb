@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Add a Comment</h2>
+  
+  <%= form_with model: [@post, @comment], local: true, html: { class: 'comment-form' } do |form| %>
+    <div class="mb-3">
+      <% @post.comments.each do |comment| %>
+     <div class="border rounded p-2 mb-2 bg-light d-flex justify-content-between">
+        <div>
+          <%= comment.body %>
+        </div>
+        <div class="ms-2 text-muted">
+          <%= comment.user.email %>
+        </div>
+     </div>
+
+
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :body, class: 'form-label' %>
+      <%= form.text_area :body, class: 'form-control', rows: 4, placeholder: 'Write your comment here...' %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
+    
+    <%= form.submit 'send', class: 'btn btn-success' %>
+  <% end %>
+</div>
