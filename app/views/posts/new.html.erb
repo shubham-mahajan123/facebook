@@ -6,6 +6,10 @@
           <%= form.label :post_Title, class: 'form-label' %>
           <%= form.text_field :postname, class: 'form-control' %>
         </div>
+        <div>
+             <%= form.label :profile_picture %>
+             <%= form.file_field :profile_picture %>
+        </div>
         <%= form.submit 'Submit', class: 'btn btn-primary' %>
       <% end %>
     </div>

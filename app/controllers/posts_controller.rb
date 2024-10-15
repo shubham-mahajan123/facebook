@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
-    
+    def index
+     
+      @posts = current_user.posts
+    end
+
     def new
       @post = Post.new
     end
@@ -16,10 +20,20 @@ class PostsController < ApplicationController
       end
     end
   
+    def destroy
+      @post = Post.find_by(id: params[:id], user_id: params[:user_id].to_i)
+    
+      if @post && @post.destroy
+        redirect_to user_posts_path(current_user), notice: 'Post was successfully deleted.'
+      else
+        redirect_to user_posts_path(current_user), alert: 'Post not found or could not be deleted.'
+      end
+    end
+    
     private
   
     def valid_param
-      params.require(:post).permit(:postname) 
+      params.require(:post).permit(:postname,:profile_picture) 
     end
   end
   
